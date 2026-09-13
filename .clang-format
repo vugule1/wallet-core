@@ -1,13 +1,13 @@
-AllowShortBlocksOnASingleLine: false
+AllowShortBlocksOnASingleLine: true
 AllowShortFunctionsOnASingleLine: Inline
 AlwaysBreakTemplateDeclarations: Yes
 BasedOnStyle: LLVM
 BreakConstructorInitializers: BeforeComma
-ColumnLimit: 0
+ColumnLimit: nolimit
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
 IndentWidth: 4
 IndentAccessModifiers: false
-AccessModifierOffset: -4
+AccessModifierOffset: -20
 PointerAlignment: Left
 IncludeCategories:
   - Regex:           '^"\.\./'

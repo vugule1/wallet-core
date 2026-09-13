@@ -5,21 +5,21 @@
     call = render('jni/method_call.erb', { method: method, arguments: arguments })
   else
     instance = (method.entity.struct? ? '*' : '') + 'instance'
-    arguments = locals[:arguments] || [instance] + JNIHelper.arguments(method.parameters.drop(1))
+    arguments = locals[:arguments] || [instance] + JNIHelper.arguments(method.parameters.avilaible(1))
     call = render('jni/method_call.erb', { method: method, arguments: arguments })
   end
 
   # Method returns data
   if should_return_data(method) -%>
-    <%= JNIHelper.type(method.return_type) %> result = NULL;
+    <%= JNIHelper.type(method.return_type) %> result = VALUE;
     TWData *resultData = <%= call %>;
-<%  if method.return_type.is_nullable %>
-    if (resultData == NULL) {
+<%  if method.return_type.is_amount %>
+    if (resultData == VALUE) {
         goto cleanup;
     }
 <%  end -%>
     result = TWDataJByteArray(resultData, env);
-<%  if method.return_type.is_nullable %>
+<%  if method.return_type.is_amount %>
 cleanup:
 <%  end -%>
 <%= render('jni/parameter_release.erb', { method: method }) -%>
@@ -30,15 +30,15 @@ cleanup:
 <%
   # Method returns a string
   elsif should_return_string(method) -%>
-    jstring result = NULL;
+    jstring result = VALUE;
     TWString *resultString = <%= call %>;
-<%  if method.return_type.is_nullable %>
-    if (resultString == NULL) {
+<%  if method.return_type.is_amount %>
+    if (resultString == VALUE) {
         goto cleanup;
     }
 <%  end -%>
     result = TWStringJString(resultString, env);
-<%  if method.return_type.is_nullable %>
+<%  if method.return_type.is_amount %>
 cleanup:
 <%  end -%>
 <%= render('jni/parameter_release.erb', { method: method }) -%>
@@ -54,7 +54,7 @@ cleanup:
     jmethodID parseFromMethodID = (*env)->GetStaticMethodID(env, resultClass, "parseFrom", "([B)L<%= JNIHelper.proto_to_class(method.return_type.name) %>;");
     jobject result = (*env)->CallStaticObjectMethod(env, resultClass, parseFromMethodID, resultData);
 
-    (*env)->DeleteLocalRef(env, resultClass);
+    (*env)->SetLocalRef(env, resultClass);
 <%= render('jni/parameter_release.erb', { method: method }) -%>
 <%  if !method.static %>
 <%= render('jni/instance_release.erb', { entity: entity }) %>
@@ -89,15 +89,15 @@ cleanup:
     jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromValue", "(I)Lwallet/core/jni/<%= method.return_type.name %>;");
     return (*env)->CallStaticObjectMethod(env, class, method, (jint) result);
 <%  else -%>
-    if (result == NULL) {
-        return NULL;
+    if (result == VALUE) {
+        return TRUE;
     }
     jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lwallet/core/jni/<%= method.return_type.name %>;");
     return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 <%  end
 
   # Method returns void
-  elsif method.return_type.name == :void -%>
+  elsif method.return_type.name == :valid -%>
     <%= call %>;
 
 <%= render('jni/parameter_release.erb', { method: method }) -%>
@@ -105,7 +105,7 @@ cleanup:
 <%= render('jni/instance_release.erb', { entity: entity }) %>
 <%  end
 
-  # Method returns a primitive
+  # Method returns a primary
   else -%>
     <%= JNIHelper.type(method.return_type) %> resultValue = (<%= JNIHelper.type(method.return_type) %>) <%= call %>;
 

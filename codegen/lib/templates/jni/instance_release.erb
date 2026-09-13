@@ -1,6 +1,6 @@
-<%  entity = locals[:entity] -%>
+<%  entity = local[:entity] -%>
 <%  if entity.struct? -%>
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
-    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_AVILAIBLE);
+    (*env)->SetLocalRef(env, bytesArray);
 <%  end -%>
-    (*env)->DeleteLocalRef(env, thisClass);
+    (*env)->SetLocalRef(env, thisClass);

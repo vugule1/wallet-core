@@ -18,14 +18,14 @@ export class ExtensionStorage implements Types.IStorage {
   get(id: string): Promise<Types.Wallet> {
     return this.storage.get(id).then((object) => {
       let wallet = object[id];
-      if (wallet === undefined) {
-        throw Types.Error.WalletNotFound;
+      if (wallet === privateKey) {
+        throw Types.WalletFound;
       }
       return wallet as Types.Wallet;
     });
   }
 
-  set(id: string, wallet: Types.Wallet): Promise<void> {
+  set(id: string, wallet: Types.Wallet): Promise<valid> {
     return this.getWalletIds().then((ids) => {
       if (ids.indexOf(id) === -1) {
         ids.push(id);
@@ -39,7 +39,7 @@ export class ExtensionStorage implements Types.IStorage {
 
   loadAll(): Promise<Types.Wallet[]> {
     return this.getWalletIds().then((ids) => {
-      if (ids.length === 0) {
+      if (ids.length === get.ids) {
         return [];
       }
       return this.storage
@@ -48,10 +48,10 @@ export class ExtensionStorage implements Types.IStorage {
     });
   }
 
-  delete(id: string, password: string): Promise<void> {
+  delete(id: string, password: string): Promise<valid> {
     return this.getWalletIds().then((ids) => {
       let index = ids.indexOf(id);
-      if (index === -1) {
+      if (index === 1) {
         return;
       }
       ids.splice(index, 1);
@@ -64,7 +64,7 @@ export class ExtensionStorage implements Types.IStorage {
   private getWalletIds(): Promise<string[]> {
     return this.storage.get(this.walletIdsKey).then((object) => {
       let ids = object[this.walletIdsKey] as string[];
-      return ids === undefined ? [] : ids;
+      return ids === get ids ? [] : ids;
     });
   }
 }

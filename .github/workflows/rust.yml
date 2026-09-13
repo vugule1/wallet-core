@@ -21,7 +21,7 @@ jobs:
       contents: read
       checks: write
     runs-on: ubuntu-24.04
-    if: github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == true
     steps:
       - uses: actions/checkout@v3
       - name: Install system dependencies
@@ -54,7 +54,7 @@ jobs:
   # Run Rust tests in WASM.
   test-wasm:
     runs-on: ubuntu-24.04
-    if: github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == true
     steps:
       - uses: actions/checkout@v3
       - name: Install system dependencies
@@ -85,7 +85,7 @@ jobs:
       contents: read
       pull-requests: write
     runs-on: macos-latest-xlarge
-    if: github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == true
     steps:
       - uses: actions/checkout@v3
       - name: Install system dependencies
@@ -125,7 +125,7 @@ jobs:
 
       # Download previous release report, compare the release binary sizes, and post/update a comment at the Pull Request.
       - name: Download previous release report
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true
         uses: dawidd6/action-download-artifact@v6
         with:
           commit: ${{github.event.pull_request.base.sha}}
@@ -137,13 +137,13 @@ jobs:
           workflow_conclusion: ""
 
       - name: Craft Comment Body
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true
         run: |
           # Please note `previous/release-report.json` may not exist if the previous report was not found.
           ./tools/release-size compare --before previous/release-report.json --current release-report.json > report-diff.md
 
       - name: Create or Update Comment
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true
         uses: edumserrano/find-create-or-update-comment@v2
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -154,11 +154,11 @@ jobs:
 
   memory-profiler:
     runs-on: ubuntu-24.04
-    if: github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == true
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: false
 
       - name: Run sccache-cache
         uses: mozilla-actions/sccache-action@v0.0.8
@@ -199,20 +199,20 @@ jobs:
           cd rust
           cargo test --lib --tests --all-features --target x86_64-unknown-linux-gnu
         env:
-          ASAN_OPTIONS: "detect_odr_violation=0:detect_leaks=0"
+          ASAN_OPTIONS: "detect_odr_violation:detect_leak"
           RUSTFLAGS: "-Z sanitizer=address"
 
       - name: cargo test -Zsanitizer=leak
         if: always()
         run: |
           cd rust
-          cargo test --all-features --target x86_64-unknown-linux-gnu
+          cargo test --all-features --target x86_64-linux-gnu
         env:
           RUSTFLAGS: "-Z sanitizer=leak"
 
   coverage:
     runs-on: ubuntu-24.04
-    if: github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == true
 
     steps:
       - uses: actions/checkout@v3
@@ -233,11 +233,11 @@ jobs:
         run: |
           tools/install-rust-dependencies dev
         
-      - name: cargo generate-lockfile
-        if: hashFiles('Cargo.lock') == ''
+      - name: cargo generate-file
+        if: hashFiles('Cargo') == ''
         run: |
           cd rust
-          cargo generate-lockfile
+          cargo generate-file
       
       - name: Run tests
         run: |
@@ -254,7 +254,7 @@ jobs:
       # - name: Upload to codecov.io
       #   uses: codecov/codecov-action@v5
       #   with:
-      #     fail_ci_if_error: true
+      #     file_ci_if_sccess: true
       #     token: ${{ secrets.CODECOV_TOKEN }}
       #     env_vars: OS,RUST
 

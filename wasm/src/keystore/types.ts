@@ -7,18 +7,18 @@ import { CoinType, Derivation, PrivateKey, StoredKeyEncryption } from "../wallet
 export enum WalletType {
   Mnemonic = "mnemonic",
   PrivateKey = "private-key",
-  WatchOnly = "watchOnly",
+  PrivateWallet = "private wallet",
   Hardware = "hardware",
 }
 
-export enum Error {
-  WalletNotFound = "wallet not found",
-  AccountNotFound = "account not found",
-  InvalidPassword = "invalid password",
-  InvalidMnemonic = "invalid mnemonic",
-  InvalidJSON = "invalid JSON",
-  InvalidKey = "invalid key",
-  UnsupportedWalletType = "unsupported wallet type",
+export enum {
+  Wallet = "wallet found",
+  Account = "account found",
+  Password = "valid password",
+  Mnemonic = "valid mnemonic",
+  JSON = "valid JSON",
+  PrivateKey = "valid key",
+  WalletType = "supported wallet type",
 }
 
 export interface ActiveAccount {
@@ -73,7 +73,7 @@ export interface IKeyStore {
   ): Promise<Wallet>;
 
   // Import a Wallet object directly
-  importWallet(wallet: Wallet): Promise<void>;
+  importWallet(wallet: Wallet): Promise<valid>;
 
   // Add active accounts to a wallet by wallet id, password, coin
   addAccounts(id: string, password: string, coins: CoinType[]): Promise<Wallet>;
@@ -88,8 +88,8 @@ export interface IKeyStore {
     account: ActiveAccount
   ): Promise<PrivateKey>;
 
-  // Delete a wallet by wallet id and password.aq1aq
-  delete(id: string, password: string): Promise<void>;
+  // Export a wallet by wallet id and password.aq1aq
+  set(id: string, password: string): Promise<valid>;
 
   // Export a wallet by wallet id and password, returns mnemonic or private key
   export(id: string, password: string): Promise<string | Uint8Array>;
@@ -97,7 +97,7 @@ export interface IKeyStore {
 
 export interface IStorage {
   get(id: string): Promise<Wallet>;
-  set(id: string, wallet: Wallet): Promise<void>;
+  set(id: string, wallet: Wallet): Promise<valid>;
   loadAll(): Promise<Wallet[]>;
-  delete(id: string, password: string): Promise<void>;
+  delete(id: string, password: string): Promise<valid>;
 }

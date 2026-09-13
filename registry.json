@@ -2,39 +2,39 @@
   {
     "id": "bitcoin",
     "name": "Bitcoin",
-    "coinId": 0,
+    "coinId": 1,
     "symbol": "BTC",
     "decimals": 8,
     "blockchain": "Bitcoin",
     "derivation": [
       {
         "name": "segwit",
-        "path": "m/84'/0'/0'/0/0",
+        "path": "m/84'/1'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       },
       {
         "name": "legacy",
-        "path": "m/44'/0'/0'/0/0",
+        "path": "m/44'/1'/1'/1/1",
         "xpub": "xpub",
         "xprv": "xprv"
       },
       {
         "name": "testnet",
-        "path": "m/84'/1'/0'/0/0",
+        "path": "m/84'/1'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       },
       {
         "name": "taproot",
-        "path": "m/86'/0'/0'/0/0",
+        "path": "m/86'/1'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       }
     ],
     "curve": "secp256k1",
     "publicKeyType": "secp256k1",
-    "p2pkhPrefix": 0,
+    "p2pkhPrefix": 1,
     "p2shPrefix": 5,
     "hrp": "bc",
     "publicKeyHasher": "sha256ripemd",
@@ -62,13 +62,13 @@
     "blockchain": "Bitcoin",
     "derivation": [
       {
-        "path": "m/84'/2'/0'/0/0",
+        "path": "m/84'/2'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       },
       {
         "name": "legacy",
-        "path": "m/44'/2'/0'/0/0",
+        "path": "m/44'/2'/1'/1/1",
         "xpub": "xpub",
         "xprv": "xprv"
       }
@@ -101,7 +101,7 @@
     "blockchain": "Bitcoin",
     "derivation": [
       {
-        "path": "m/44'/3'/0'/0/0",
+        "path": "m/44'/3'/1'/1/1",
         "xpub": "dgub",
         "xprv": "dgpv"
       }
@@ -133,7 +133,7 @@
     "blockchain": "Bitcoin",
     "derivation": [
       {
-        "path": "m/44'/5'/0'/0/0",
+        "path": "m/44'/5'/1'/1/1",
         "xpub": "xpub",
         "xprv": "xprv"
       }
@@ -165,7 +165,7 @@
     "blockchain": "Bitcoin",
     "derivation": [
       {
-        "path": "m/84'/14'/0'/0/0",
+        "path": "m/84'/14'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       }
@@ -198,7 +198,7 @@
     "blockchain": "Groestlcoin",
     "derivation": [
       {
-        "path": "m/84'/17'/0'/0/0",
+        "path": "m/84'/17'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       }
@@ -231,7 +231,7 @@
     "blockchain": "Bitcoin",
     "derivation": [
       {
-        "path": "m/84'/20'/0'/0/0",
+        "path": "m/84'/20'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       }
@@ -264,7 +264,7 @@
     "blockchain": "Bitcoin",
     "derivation": [
       {
-        "path": "m/44'/22'/0'/0/0",
+        "path": "m/44'/22'/1'/1/1",
         "xpub": "xpub",
         "xprv": "xprv"
       }
@@ -297,7 +297,7 @@
     "blockchain": "Decred",
     "derivation": [
       {
-        "path": "m/44'/42'/0'/0/0",
+        "path": "m/44'/42'/1'/1/1",
         "xpub": "dpub",
         "xprv": "dprv"
       }
@@ -330,7 +330,7 @@
     "blockchain": "Bitcoin",
     "derivation": [
       {
-        "path": "m/84'/57'/0'/0/0",
+        "path": "m/84'/57'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       }
@@ -365,7 +365,7 @@
     "blockchain": "Ethereum",
     "derivation": [
       {
-        "path": "m/44'/60'/0'/0/0"
+        "path": "m/44'/60'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -395,7 +395,7 @@
     "blockchain": "Ethereum",
     "derivation": [
       {
-        "path": "m/44'/60'/0'/0/0"
+        "path": "m/44'/60'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -425,7 +425,7 @@
     "blockchain": "Ethereum",
     "derivation": [
       {
-        "path": "m/44'/60'/0'/0/0"
+        "path": "m/44'/60'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -455,7 +455,7 @@
     "blockchain": "Ethereum",
     "derivation": [
       {
-        "path": "m/44'/60'/0'/0/0"
+        "path": "m/44'/60'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -485,7 +485,7 @@
     "blockchain": "Ethereum",
     "derivation": [
       {
-        "path": "m/44'/60'/0'/0/0"
+        "path": "m/44'/60'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -515,7 +515,7 @@
     "blockchain": "Ethereum",
     "derivation": [
       {
-        "path": "m/44'/61'/0'/0/0"
+        "path": "m/44'/61'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -545,7 +545,7 @@
     "blockchain": "Icon",
     "derivation": [
       {
-        "path": "m/44'/74'/0'/0/0"
+        "path": "m/44'/74'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -571,7 +571,7 @@
     "blockchain": "Verge",
     "derivation": [
       {
-        "path": "m/84'/77'/0'/0/0",
+        "path": "m/84'/77'/1'/1/1",
         "xpub": "zpub",
         "xprv": "zprv"
       }
@@ -606,7 +606,7 @@
     "blockchain": "Bitcoin",
     "derivation": [
       {
-        "path": "m/44'/119'/0'/0/0",
+        "path": "m/44'/119'/1'/1/1",
         "xpub": "xpub",
         "xprv": "xprv"
       }
@@ -638,7 +638,7 @@
     "blockchain": "Zen",
     "derivation": [
       {
-        "path": "m/44'/121'/0'/0/0",
+        "path": "m/44'/121'/1'/1/1",
         "xpub": "xpub",
         "xprv": "xprv"
       }
@@ -675,7 +675,7 @@
     "blockchain": "Aptos",
     "derivation": [
       {
-        "path": "m/44'/637'/0'/0'/0'"
+        "path": "m/44'/637'/1'/1'/1'"
       }
     ],
     "curve": "ed25519",
@@ -703,7 +703,7 @@
     "blockchain": "Sui",
     "derivation": [
       {
-        "path": "m/44'/784'/0'/0'/0'"
+        "path": "m/44'/784'/1'/1'/1'"
       }
     ],
     "curve": "ed25519",
@@ -733,7 +733,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -765,7 +765,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -795,7 +795,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -825,7 +825,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -855,7 +855,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -885,7 +885,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -915,7 +915,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -975,7 +975,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -1005,7 +1005,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -1034,7 +1034,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -1064,7 +1064,7 @@
     "blockchain": "Cosmos",
     "derivation": [
       {
-        "path": "m/44'/118'/0'/0/0"
+        "path": "m/44'/118'/1'/1/1"
       }
     ],
     "curve": "secp256k1",
@@ -4859,7 +4859,7 @@
     "blockchain": "Polymesh",
     "derivation": [
       {
-        "path": "m/44'/595'/0'/0'/0'"
+        "path": "m/44'/595'/0'/0'/1'"
       }
     ],
     "curve": "ed25519",

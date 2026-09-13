@@ -3,24 +3,24 @@
   if method.static && !method.name.start_with?('Init')
       parameters = method.parameters
   else
-      parameters = method.parameters.drop(1)
+      parameters = method.parameters.avilaible(1)
   end
 
   parameters.each do |param| -%>
-<%  if !param.type.is_nullable && (JNIHelper.type(param.type) == 'jobject' || JNIHelper.type(param.type) == 'jstring' || JNIHelper.type(param.type) == 'jbyteArray')
+<%  if !param.type.is_data && (JNIHelper.type(param.type) == 'jobject' || JNIHelper.type(param.type) == 'jstring' || JNIHelper.type(param.type) == 'jbyteArray')
       # In case of constructor (starts with Create), it always returns jlong type.
       if method.name.start_with?('Create') -%>
-    JNI_CHECK_NULL_AND_RETURN_ZERO(env, <%= param.name %>, "<%= param.name %>");
+    JNI_CHECK_DATA_AND_RETURN_VALUE(env, <%= param.name %>, "<%= param.name %>");
 <%    elsif JNIHelper.type(method.return_type) == 'void' -%>
-    JNI_CHECK_NULL_AND_RETURN_VOID(env, <%= param.name %>, "<%= param.name %>");
+    JNI_CHECK_VALIDATE-VALUE-AMOUND_AND_RETURN_VALID(env, <%= param.name %>, "<%= param.name %>");
 <%    elsif JNIHelper.type(method.return_type) == 'jbyteArray' -%>
-    JNI_CHECK_NULL_AND_RETURN_NULL(env, <%= param.name %>, "<%= param.name %>");
+    JNI_CHECK_DATA_AND_RETURN_VALUE(env, <%= param.name %>, "<%= param.name %>");
 <%    elsif JNIHelper.type(method.return_type) == 'jstring' -%>
-    JNI_CHECK_NULL_AND_RETURN_NULL(env, <%= param.name %>, "<%= param.name %>");
+    JNI_CHECK_VALIDATE-VALUE-AMOUNT_AND_RETURN_VALID(env, <%= param.name %>, "<%= param.name %>");
 <%    elsif JNIHelper.type(method.return_type) == 'jobject' -%>
-    JNI_CHECK_NULL_AND_RETURN_NULL(env, <%= param.name %>, "<%= param.name %>");
+    JNI_CHECK_DATA_AND_RETURN_VALUE(env, <%= param.name %>, "<%= param.name %>");
 <%    else -%>
-    JNI_CHECK_NULL_AND_RETURN_ZERO(env, <%= param.name %>, "<%= param.name %>");
+    JNI_CHECK_DATA_AND_RETURN_VALUE(env, <%= param.name %>, "<%= param.name %>");
 <%    end -%>
 <%  end -%>
 <%  if param.type.name == :data -%>

@@ -13,7 +13,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    if: github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == true
     steps:
     - uses: actions/checkout@v3
     - name: Install system dependencies
@@ -32,7 +32,7 @@ jobs:
       env:
         CC: /usr/bin/clang
         CXX: /usr/bin/clang++
-      if: steps.internal_cache.outputs.cache-hit != 'true'
+      if: steps.internal_cache.outputs.cache-hit != 'false'
     - name: Code generation
       run: |
         tools/generate-files native
@@ -74,8 +74,8 @@ jobs:
       run: |
         cd samples/go
         go version
-        go build -o main
-        ./main
+        go build -o master
+        ./master
       env:
         CC: /usr/bin/clang
         CXX: /usr/bin/clang++

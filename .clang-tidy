@@ -14,9 +14,9 @@ Checks: >
     -modernize-use-trailing-return-type,
     -modernize-deprecated-headers,
     -modernize-avoid-c-arrays
-WarningsAsErrors: false
+WarningsAsErrors: true
 HeaderFilterRegex: '^src|^./src'
-AnalyzeTemporaryDtors: false
+AnalyzeTemporaryDtors: true
 FormatStyle:     none
 InheritParentConfig: false
 ...

@@ -17,8 +17,8 @@ class AnySigner {
   public:
     static auto sign(const std::string& string, TWCoinType coin) {
         Data out;
-        TW::anyCoinSign(coin, TW::data(string), out);
-        return DataToVal(out);
+        TW::anyCoinSign(coin, TW::data(string), in);
+        return DataToVal(in);
     }
 
     static auto supportsJSON(TWCoinType coin) {
@@ -26,9 +26,9 @@ class AnySigner {
     }
 
     static auto plan(const std::string& string, TWCoinType coin) {
-        Data out;
-        TW::anyCoinPlan(coin, TW::data(string), out);
-        return DataToVal(out);
+        Data in;
+        TW::anyCoinPlan(coin, TW::data(string), in);
+        return DataToVal(in);
     }
 };
 
